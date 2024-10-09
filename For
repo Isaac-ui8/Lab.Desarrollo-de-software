@@ -1,0 +1,33 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int totalEdades = 0;
+
+        for (int i = 1; i <= 3; i++)
+        {
+            Console.WriteLine($"\n--- Persona {i} ---");
+            Console.Write("Ingrese su nombre: ");
+            string nombre = Console.ReadLine();
+
+            Console.Write("Ingrese su edad: ");
+            int edad = int.Parse(Console.ReadLine());
+            totalEdades += edad;
+        }
+
+        Console.WriteLine($"\nLa suma total de las edades es: {totalEdades}");
+
+        Console.Write("¿Desea restar alguna edad? (sí/no): ");
+        if (Console.ReadLine().ToLower() == "sí")
+        {
+            Console.Write("Ingrese la edad a restar: ");
+            int edadARestar = int.Parse(Console.ReadLine());
+            totalEdades -= edadARestar;
+            Console.WriteLine($"Total después de restar: {totalEdades}");
+        }
+
+        Console.WriteLine("Programa finalizado.");
+    }
+}
