@@ -1,0 +1,59 @@
+using System;
+
+namespace TarjetaCreditoEjemplo
+{
+    public class TarjetaCredito
+    {
+        public string NumeroTarjeta { get; private set; } 
+        private int CVV; 
+        protected DateTime FechaExpiracion;
+
+        public TarjetaCredito(string numeroTarjeta, int cvv, DateTime fechaExpiracion)
+        {
+            NumeroTarjeta = numeroTarjeta;
+            CVV = cvv;
+            FechaExpiracion = fechaExpiracion;
+        }
+
+        public void MostrarInformacion()
+        {
+            Console.WriteLine($"Número de Tarjeta: {NumeroTarjeta}");
+            Console.WriteLine($"Fecha de Expiración: {FechaExpiracion.ToShortDateString()}");
+        }
+
+        protected bool ValidarCVV(int cvvIngresado)
+        {
+            return CVV == cvvIngresado;
+        }
+    }
+
+    public class TarjetaPremium : TarjetaCredito
+    {
+        public TarjetaPremium(string numeroTarjeta, int cvv, DateTime fechaExpiracion)
+            : base(numeroTarjeta, cvv, fechaExpiracion) { }
+
+        public void UsarTarjeta(int cvvIngresado)
+        {
+            if (ValidarCVV(cvvIngresado))
+            {
+                Console.WriteLine("¡Transacción realizada!");
+            }
+            else
+            {
+                Console.WriteLine("CVV incorrecto.");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TarjetaCredito tarjeta = new TarjetaCredito("1234-5678-9876-5432", 123, DateTime.Now.AddYears(1));
+            tarjeta.MostrarInformacion();
+
+            TarjetaPremium tarjetaPremium = new TarjetaPremium("4321-8765-6789-1234", 456, DateTime.Now.AddYears(1));
+            tarjetaPremium.UsarTarjeta(456); 
+        }
+    }
+}
