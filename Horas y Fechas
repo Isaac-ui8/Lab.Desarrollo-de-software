@@ -1,0 +1,23 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        DateTime ahora = DateTime.Now;
+        Console.WriteLine($"Fecha y hora actual: {ahora}");
+        Console.WriteLine($"Fecha actual: {ahora.ToString("dd/MM/yyyy")}");
+        Console.WriteLine($"Hora actual: {ahora.TimeOfDay}");
+        Console.WriteLine($"Fecha y hora formateada: {ahora:dddd, dd MMMM yyyy HH:mm:ss}");
+        Console.WriteLine($"Fecha dentro de 5 días: {ahora.AddDays(5):dd/MM/yyyy}");
+        Console.WriteLine($"Hora menos 3 horas: {ahora.AddHours(-3):HH:mm:ss}");
+
+        TimeSpan diferencia = ahora - new DateTime(2024, 10, 1);
+        Console.WriteLine($"Días entre 1 de Octubre y hoy: {diferencia.Days} días");
+
+        DateTime fechaEspecifica = new DateTime(2023, 12, 25, 10, 30, 0);
+        Console.WriteLine($"Fecha y hora específica: {fechaEspecifica}");
+
+        Console.WriteLine(fechaEspecifica > ahora ? "La fecha específica es futura." : "La fecha específica es pasada o actual.");
+    }
+}
