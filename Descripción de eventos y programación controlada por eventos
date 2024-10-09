@@ -1,0 +1,55 @@
+using System;
+using System.Timers;
+
+class Program
+{
+    public class Boton
+    {
+        public event EventHandler Click;
+        private int contadorClics = 0;
+
+        public void HacerClic()
+        {
+            contadorClics++;
+            Console.WriteLine($"Botón presionado. Total de clics: {contadorClics}");
+            Click?.Invoke(this, EventArgs.Empty);
+        }
+
+        public int ObtenerContadorClics() => contadorClics;
+        public void RestablecerContador() => contadorClics = 0;
+    }
+
+    private static Timer temporizador;
+    private static Boton boton;
+
+    static void Main()
+    {
+        boton = new Boton();
+        boton.Click += Boton_Click;
+
+        temporizador = new Timer(5000);
+        temporizador.Elapsed += Temporizador_Elapsed;
+        temporizador.AutoReset = true;
+        temporizador.Start();
+
+        for (int i = 0; i < 10; i++)
+        {
+            boton.HacerClic();
+            System.Threading.Thread.Sleep(1000); 
+        }
+
+        Console.WriteLine("Presiona una tecla para salir...");
+        Console.ReadKey();
+    }
+
+    private static void Temporizador_Elapsed(object sender, ElapsedEventArgs e)
+    {
+        Console.WriteLine($"\nTotal de clics en los últimos 5 segundos: {boton.ObtenerContadorClics()}");
+        boton.RestablecerContador();
+    }
+
+    private static void Boton_Click(object sender, EventArgs e)
+    {
+ 
+    }
+}
