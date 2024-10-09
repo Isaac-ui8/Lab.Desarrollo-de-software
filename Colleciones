@@ -1,38 +1,31 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
-namespace ColeccionesEjemplo
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        ArrayList arrayList = new ArrayList();
+
+        arrayList.Add("Hola");
+        arrayList.Add(123);
+        arrayList.Add(45.67);
+        arrayList.Add(true);
+
+        Console.WriteLine("Elementos en el ArrayList:");
+        foreach (var item in arrayList)
         {
-            List<string> nombres = new List<string>();
-            nombres.Add("Juan");
-            nombres.Add("Ana");
-            nombres.Add("Luis");
-
-            Console.WriteLine("Lista de Nombres:");
-            foreach (var nombre in nombres)
-            {
-                Console.WriteLine(nombre);
-            }
-
-            Dictionary<int, string> personas = new Dictionary<int, string>();
-            personas.Add(145, "Juan");
-            personas.Add(275, "Ana");
-            personas.Add(369, "Luis");
-
-            Console.WriteLine("\nDiccionario de Personas:");
-            foreach (var persona in personas)
-            {
-                Console.WriteLine($"ID: {persona.Key}, Nombre: {persona.Value}");
-            }
-
-            if (personas.TryGetValue(2, out string nombrePersona))
-            {
-                Console.WriteLine($"\nNombre de la persona con ID 2: {nombrePersona}");
-            }
+            Console.WriteLine(item);
         }
+
+        arrayList.Remove(123);
+
+        Console.WriteLine("\nElementos después de eliminar 123:");
+        foreach (var item in arrayList)
+        {
+            Console.WriteLine(item);
+        }
+
+        Console.WriteLine($"\nCantidad de elementos en el ArrayList: {arrayList.Count}");
     }
 }
