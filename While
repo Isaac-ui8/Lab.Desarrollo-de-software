@@ -1,0 +1,43 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int totalEdades = 0, contadorEstudiantes = 0;
+        string opcion;
+
+        while (true)
+        {
+            Console.Write($"\n--- Estudiante {++contadorEstudiantes} ---\nIngrese nombre: ");
+            string nombre = Console.ReadLine();
+
+            Console.Write("Ingrese apellido: ");
+            string apellido = Console.ReadLine();
+
+            Console.Write("Ingrese edad: ");
+            int edad = int.Parse(Console.ReadLine());
+            totalEdades += edad;
+
+            Console.Write("Ingrese nacionalidad: ");
+            string nacionalidad = Console.ReadLine();
+
+            Console.WriteLine($"\nNombre: {nombre}, Apellido: {apellido}, Edad: {edad}, Nacionalidad: {nacionalidad}");
+
+            Console.Write("\n¿Ingresar otro estudiante? (no para terminar): ");
+            if (Console.ReadLine().ToLower() == "no") break;
+        }
+
+        Console.WriteLine($"\nSuma total de edades: {totalEdades}");
+
+        Console.Write("¿Restar alguna edad? (sí/no): ");
+        if (Console.ReadLine().ToLower() == "sí")
+        {
+            Console.Write("Ingrese edad a restar: ");
+            totalEdades -= int.Parse(Console.ReadLine());
+            Console.WriteLine($"Total después de restar: {totalEdades}");
+        }
+
+        Console.WriteLine("\nPrograma finalizado.");
+    }
+}
