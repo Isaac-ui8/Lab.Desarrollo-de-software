@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public class Estudiante
+    {
+        public string Nombre { get; set; }
+        public int Edad { get; set; }
+        public double Calificacion { get; set; }
+
+        public Estudiante(string nombre, int edad, double calificacion)
+        {
+            Nombre = nombre;
+            Edad = edad;
+            Calificacion = calificacion;
+        }
+    }
+
+    static void Main()
+    {
+        List<Estudiante> estudiantes = new List<Estudiante>
+        {
+            new Estudiante("Ana", 20, 85.5),
+            new Estudiante("Luis", 22, 90.0),
+            new Estudiante("Pedro", 21, 78.5),
+            new Estudiante("María", 23, 95.0),
+            new Estudiante("José", 20, 70.0)
+        };
+
+        var estudiantesFiltrados = from e in estudiantes
+                                   where e.Calificacion > 80
+                                   orderby e.Nombre
+                                   select e;
+
+        Console.WriteLine("Estudiantes con calificaciones mayores a 80:");
+        foreach (var estudiante in estudiantesFiltrados)
+        {
+            Console.WriteLine($"Nombre: {estudiante.Nombre}, Edad: {estudiante.Edad}, Calificación: {estudiante.Calificacion}");
+        }
+    }
+}
