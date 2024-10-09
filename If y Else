@@ -1,0 +1,52 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Ingrese su nombre: ");
+        string nombre = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(nombre))
+        {
+            Console.WriteLine("El nombre no puede estar vacío.");
+        }
+        else
+        {
+            Console.Write("Ingrese su apellido: ");
+            string apellido = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(apellido))
+            {
+                Console.WriteLine("El apellido no puede estar vacío.");
+            }
+            else
+            {
+                Console.Write("Ingrese su edad: ");
+                int edad;
+                if (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
+                {
+                    Console.WriteLine("La edad no es válida.");
+                }
+                else
+                {
+                    Console.Write("Ingrese su nacionalidad: ");
+                    string nacionalidad = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(nacionalidad))
+                    {
+                        Console.WriteLine("La nacionalidad no puede estar vacía.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n--- Información Ingresada ---");
+                        Console.WriteLine($"Nombre: {nombre}");
+                        Console.WriteLine($"Apellido: {apellido}");
+                        Console.WriteLine($"Edad: {edad} años");
+                        Console.WriteLine($"Nacionalidad: {nacionalidad}");
+                    }
+                }
+            }
+        }
+    }
+}
