@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    enum NivelAcceso
+    {
+        Administrador,
+        Usuario,
+        Invitado
+    }
+
+    class Usuario
+    {
+        public string Nombre { get; set; }
+        public NivelAcceso Acceso { get; set; }
+
+        public Usuario(string nombre, NivelAcceso acceso)
+        {
+            Nombre = nombre;
+            Acceso = acceso;
+        }
+
+        public override string ToString() => $"{Nombre} - {Acceso}";
+    }
+
+    static void Main()
+    {
+        List<Usuario> usuarios = new List<Usuario>();
+        bool salir = false;
+
+        while (!salir)
+        {
+            Console.WriteLine("\n1. Agregar Usuario\n2. Mostrar Usuarios\n3. Salir");
+            Console.Write("Selecciona una opción: ");
+            string opcion = Console.ReadLine();
+
+            switch (opcion)
+            {
+                case "1":
+                    AgregarUsuario(usuarios);
+                    break;
+                case "2":
+                    MostrarUsuarios(usuarios);
+                    break;
+                case "3":
+                    salir = true;
+                    break;
+                default:
+                    Console.WriteLine("Opción no válida.");
+                    break;
+            }
+        }
+    }
+
+    static void AgregarUsuario(List<Usuario> usuarios)
+    {
+        Console.Write("Nombre del usuario: ");
+        string nombre = Console.ReadLine();
+
+        Console.WriteLine("Nivel de acceso (0: Admin, 1: Usuario, 2: Invitado): ");
+        NivelAcceso acceso = (NivelAcceso)Enum.Parse(typeof(NivelAcceso), Console.ReadLine() ?? "2");
+
+        usuarios.Add(new Usuario(nombre, acceso));
+        Console.WriteLine($"Usuario '{nombre}' agregado.");
+    }
+
+    static void MostrarUsuarios(List<Usuario> usuarios)
+    {
+        Console.WriteLine("\nUsuarios:");
+        foreach (var usuario in usuarios)
+        {
+            Console.WriteLine(usuario);
+        }
+    }
+}
+
